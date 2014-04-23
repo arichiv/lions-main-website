@@ -6,7 +6,8 @@
     "url": "git://github.com/aric/lions-main.git"
   },
   "dependencies": {
-    "express": "3.5.x"
+    "express": "3.5.x",
+    "jade": "1.3.x"
   },
   "engines": {
     "node": "0.10.x",

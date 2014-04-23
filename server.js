@@ -1,7 +1,18 @@
 var express = require('express');
-var app = express();
-app.use(express.static(__dirname + '/'));
 var http = require('http');
-var port = process.env.PORT || 5000;
-var server = http.createServer(app);
-server.listen(port);
+
+var app = express();
+
+app.configure(function(){
+  app.set('port', process.env.PORT || 5000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
+  app.use(express.logger('dev'));
+  app.use("/static/", express.static(__dirname + '/static/'));
+});
+
+app.get('/', function(req, res) {
+  res.render("index");
+});
+
+http.createServer(app).listen(app.get('port'));
