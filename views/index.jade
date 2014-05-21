@@ -1,12 +1,74 @@
 doctype html
-html(lang="en")
+html(lang='en')
   head
     title='Lions Main'
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css')
     script(src='//code.jquery.com/jquery-2.1.0.min.js')
     script(src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
-  body
-    center
-      img(src='/static/logo.png')
-      p Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
+    script(src='//use.typekit.net/amt5afx.js')
+    script(type='text/javascript').
+      Typekit.load();
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+  body(data-spy='scroll', data-target='#lm-nav')
+    .container
+      .row: .col-md-12#home
+        center
+          img(src='/static/logo.png')
+      .row(style='height:52px')
+        nav(id='lm-nav', class='navbar-default', role='navigation', data-spy='affix', data-offset-top='602', style='top:10px;z-index:1000')
+          .container
+            .navbar-header
+              button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#lm-nav-content')
+                span(class='sr-only') Toggle navigation
+                span(class='icon-bar')
+                span(class='icon-bar')
+                span(class='icon-bar')
+              a(class='navbar-brand', href='#home') Lions Main Art Collective
+            #lm-nav-content.collapse.navbar-collapse
+              ul(class='nav navbar-nav')
+                li: a(href='#show1') Show 1
+                li: a(href='#show2') Show 2
+      .row: .col-md-12
+        h3(class='text-center').
+          Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
+    .container-fluid(style='background-color:green')
+      .container: .row: .col-md-12#show1
+        h1(class='text-center') Show 1
+        h2(class='text-center') The First Show
+        #show1-carousel.carousel.slide(data-ride='carousel')
+          ol.carousel-indicators
+            li(data-target='#show1-carousel' data-slide-to='0' class='active')
+            li(data-target='#show1-carousel' data-slide-to='1')
+            li(data-target='#show1-carousel' data-slide-to='2')
+          .carousel-inner
+            .item.active
+              img(src='/static/logo.png')
+            .item
+              img(src='/static/logo.png')
+            .item
+              img(src='/static/logo.png')
+          a(class='left carousel-control' href='#show1-carousel' data-slide='prev')
+            span(class='glyphicon glyphicon-chevron-left')
+          a(class='right carousel-control' href='#show1-carousel' data-slide='next')
+            span(class='glyphicon glyphicon-chevron-right')
+    .container-fluid(style='background-color:red')
+      .container: .row: .col-md-12#show2
+        h1(class='text-center') Show 2
+        h2(class='text-center') The Second Show
+        #show2-carousel.carousel.slide(data-ride='carousel')
+          ol.carousel-indicators
+            li(data-target='#show2-carousel' data-slide-to='0' class='active')
+            li(data-target='#show2-carousel' data-slide-to='1')
+            li(data-target='#show2-carousel' data-slide-to='2')
+          .carousel-inner
+            .item.active
+              img(src='/static/logo.png')
+            .item
+              img(src='/static/logo.png')
+            .item
+              img(src='/static/logo.png')
+          a(class='left carousel-control' href='#show2-carousel' data-slide='prev')
+            span(class='glyphicon glyphicon-chevron-left')
+          a(class='right carousel-control' href='#show2-carousel' data-slide='next')
+            span(class='glyphicon glyphicon-chevron-right')
