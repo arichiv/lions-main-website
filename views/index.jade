@@ -1,3 +1,25 @@
+mixin show-section(show_style, show_name, show_info)
+  .container-fluid(id=show_style)
+    .container: .row: .col-md-12
+      h1(class='text-center')= show_name
+      h2(class='text-center')= show_info
+      #show1-carousel.carousel.slide(data-ride='carousel')
+        ol.carousel-indicators
+          li(data-target='#show1-carousel' data-slide-to='0' class='active')
+          li(data-target='#show1-carousel' data-slide-to='1')
+          li(data-target='#show1-carousel' data-slide-to='2')
+        .carousel-inner
+          .item.active
+            img(src='/static/logo.png')
+          .item
+            img(src='/static/logo.png')
+          .item
+            img(src='/static/logo.png')
+        a(class='left carousel-control' href='#show1-carousel' data-slide='prev')
+          span(class='glyphicon glyphicon-chevron-left')
+        a(class='right carousel-control' href='#show1-carousel' data-slide='next')
+          span(class='glyphicon glyphicon-chevron-right')
+
 doctype html
 html(lang='en')
   head
@@ -39,43 +61,5 @@ html(lang='en')
         h2.
           Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
         br
-    .container-fluid(style='background-color:green')
-      .container: .row: .col-md-12#show1
-        h1(class='text-center') Show 1
-        h2(class='text-center') The First Show
-        #show1-carousel.carousel.slide(data-ride='carousel')
-          ol.carousel-indicators
-            li(data-target='#show1-carousel' data-slide-to='0' class='active')
-            li(data-target='#show1-carousel' data-slide-to='1')
-            li(data-target='#show1-carousel' data-slide-to='2')
-          .carousel-inner
-            .item.active
-              img(src='/static/logo.png')
-            .item
-              img(src='/static/logo.png')
-            .item
-              img(src='/static/logo.png')
-          a(class='left carousel-control' href='#show1-carousel' data-slide='prev')
-            span(class='glyphicon glyphicon-chevron-left')
-          a(class='right carousel-control' href='#show1-carousel' data-slide='next')
-            span(class='glyphicon glyphicon-chevron-right')
-    .container-fluid(style='background-color:red')
-      .container: .row: .col-md-12#show2
-        h1(class='text-center') Show 2
-        h2(class='text-center') The Second Show
-        #show2-carousel.carousel.slide(data-ride='carousel')
-          ol.carousel-indicators
-            li(data-target='#show2-carousel' data-slide-to='0' class='active')
-            li(data-target='#show2-carousel' data-slide-to='1')
-            li(data-target='#show2-carousel' data-slide-to='2')
-          .carousel-inner
-            .item.active
-              img(src='/static/logo.png')
-            .item
-              img(src='/static/logo.png')
-            .item
-              img(src='/static/logo.png')
-          a(class='left carousel-control' href='#show2-carousel' data-slide='prev')
-            span(class='glyphicon glyphicon-chevron-left')
-          a(class='right carousel-control' href='#show2-carousel' data-slide='next')
-            span(class='glyphicon glyphicon-chevron-right')
+    +show-section('show1', 'Show 1', 'The First Show')
+    +show-section('show2', 'Show 2', 'The Second Show')
