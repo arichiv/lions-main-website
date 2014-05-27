@@ -9,14 +9,18 @@ html(lang='en')
     script(src='//use.typekit.net/amt5afx.js')
     script(type='text/javascript').
       Typekit.load();
+    style
+      | #about {
+      |  font-family: "cubano";
+      | }
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body(data-spy='scroll', data-target='#lm-nav')
-    .container
-      .row: .col-md-12#home
+    .container#about
+      .row: .col-md-12
         center
-          img(src='/static/logo.png')
+          img.img-responsive(src='/static/logo.png', vspace='20px')
       .row(style='height:52px')
-        nav(id='lm-nav', class='navbar-default', role='navigation', data-spy='affix', data-offset-top='602', style='top:10px;z-index:1000')
+        nav(id='lm-nav', class='navbar-default', role='navigation', data-spy='affix', data-offset-top='284', style='top:10px;z-index:1000')
           .container
             .navbar-header
               button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#lm-nav-content')
@@ -24,14 +28,17 @@ html(lang='en')
                 span(class='icon-bar')
                 span(class='icon-bar')
                 span(class='icon-bar')
-              a(class='navbar-brand', href='#home') Lions Main Art Collective
             #lm-nav-content.collapse.navbar-collapse
               ul(class='nav navbar-nav')
+                li: a(href='#about') About Us
                 li: a(href='#show1') Show 1
                 li: a(href='#show2') Show 2
+              ul(class='nav navbar-nav navbar-right')
+                li: a(href='https://www.facebook.com/lionsmainartcollective') Facebook
       .row: .col-md-12
-        h3(class='text-center').
+        h2.
           Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
+        br
     .container-fluid(style='background-color:green')
       .container: .row: .col-md-12#show1
         h1(class='text-center') Show 1
