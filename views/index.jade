@@ -49,8 +49,8 @@ html(lang='en')
       | }
       | #fever {
       |   color: black;
-      |   font-family: "atrament-web";
-      |   background-image: url('/static/congruent_outline.png');
+      |   font-family: "flood-std";
+      |   background-image: url('/static/light_toast.png');
       | }
       | #eulogy {
       |   color: white;
@@ -75,6 +75,8 @@ html(lang='en')
             #lm-nav-content.collapse.navbar-collapse
               ul(class='nav navbar-nav')
                 li: a(href='#about') About Us
+                li: a(href='#portals') Portals
+                li: a(href='#fever') Fever
                 li: a(href='#eulogy') Eulogy
               ul(class='nav navbar-nav navbar-right')
                 li: a(href='https://www.facebook.com/lionsmainartcollective') Facebook
@@ -83,4 +85,5 @@ html(lang='en')
           Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
         img.img-responsive(src='/static/people.jpg', vspace='20px')
     +show-section('portals', 'Portals', 'Fall 2014', 'Location TBA', 'A door, gate, doorway, or gateway, of stately or elaborate construction; the entrance to a large or magnificent building, esp. when emphasized in architectural treatment; any door or gate', 'Oxford English Dictionary', [])
+    +show-section('fever', 'Fever', 'Tuesday, May 6, 2014', 'Gallery 1412', 'A state of intense nervous excitement, agitation, heat; an instance of this.', 'Oxford English Dictionary', ['fever_0.jpg', 'fever_1.jpg',  'fever_2.jpg', 'fever_3.jpg', 'fever_4.jpg'])
     +show-section('eulogy', 'Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
