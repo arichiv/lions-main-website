@@ -1,5 +1,5 @@
-mixin show-section(show_id, show_name, show_date, show_location, show_def, show_def_src, carousel_images)
-  .container-fluid(id=show_id)
+mixin show-section(show_name, show_date, show_location, show_def, show_def_src, carousel_images)
+  .container-fluid(id=show_name)
     .container: .row: .col-md-12
       h1(class='text-center')= show_name
       h1(class='text-center')= show_date
@@ -8,13 +8,13 @@ mixin show-section(show_id, show_name, show_date, show_location, show_def, show_
         h2= show_def
         footer= show_def_src
       if carousel_images
-        carousel.slide(data-ride='carousel', id='carousel-'+show_id)
+        carousel.slide(data-ride='carousel', id='carousel-'+show_name)
           ol.carousel-indicators
             each val, index in carousel_images
               if index == 0
-                li.active(data-target='#carousel-'+show_id data-slide-to=index)
+                li.active(data-target='#carousel-'+show_name data-slide-to=index)
               else
-                li(data-target='#carousel-'+show_id data-slide-to=index)
+                li(data-target='#carousel-'+show_name data-slide-to=index)
           .carousel-inner
             each val, index in carousel_images
               if index == 0
@@ -23,9 +23,9 @@ mixin show-section(show_id, show_name, show_date, show_location, show_def, show_
               else
                 .item
                   center: img.img-responsive(src='/static/'+val)
-            a(class='left carousel-control' href='#carousel-'+show_id data-slide='prev')
+            a(class='left carousel-control' href='#carousel-'+show_name data-slide='prev')
               span(class='glyphicon glyphicon-chevron-left')
-            a(class='right carousel-control' href='#carousel-'+show_id data-slide='next')
+            a(class='right carousel-control' href='#carousel-'+show_name data-slide='next')
               span(class='glyphicon glyphicon-chevron-right')
         br
 
@@ -48,32 +48,32 @@ html(lang='en')
       | .carousel-control {
       |   background-image: none !important;
       | }
-      | #about {
+      | #About {
       |   color: black;
       |   font-family: "cubano";
       |   background-image: url('/static/rockywall.png');
       | }
-      | #portals {
+      | #Portals {
       |   color: white;
       |   font-family: "atrament-web";
       |   background-image: url('/static/escheresque_ste.png');
       | }
-      | #fever {
+      | #Fever {
       |   color: black;
       |   font-family: "flood-std";
       |   background-image: url('/static/skulls.png');
       | }
-      | #gems {
+      | #Gems {
       |   color: black;
       |   font-family: "sister-frisky";
       |   background-image: url('/static/congruent_pentagon.png');
       | }
-      | #collision {
+      | #Collision {
       |   color: black;
       |   font-family: "sneakers-script";
       |   background-image: url('/static/old_mathematics.png');
       | }
-      | #eulogy {
+      | #Eulogy {
       |   color: white;
       |   font-family: "jbt-annabelle";
       |   background-image: url('/static/pinstriped_suit.png');
@@ -98,12 +98,12 @@ html(lang='en')
                 span(class='icon-bar')
             #lm-nav-content.collapse.navbar-collapse
               ul(class='nav navbar-nav')
-                li: a(href='#about') About Us
-                li: a(href='#portals') Portals
-                li: a(href='#fever') Fever
-                li: a(href='#gems') Gems
-                li: a(href='#collision') Collision
-                li: a(href='#eulogy') Eulogy
+                li: a(href='#Aboud') About Us
+                li: a(href='#Portals') Portals
+                li: a(href='#Fever') Fever
+                li: a(href='#Gems') Gems
+                li: a(href='#Collision') Collision
+                li: a(href='#Eulogy') Eulogy
               ul(class='nav navbar-nav navbar-right')
                 li: a(href='https://www.facebook.com/lionsmainartcollective') Facebook
                 li: a(href='mailto:lionsmainart@gmail.com') Contact Us
@@ -111,8 +111,8 @@ html(lang='en')
         h2.
           Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
         img.img-responsive(src='/static/people.jpg', vspace='20px')
-    +show-section('portals', 'Portals', 'Fall 2014', 'Location TBA', 'A door, gate, doorway, or gateway, of stately or elaborate construction; the entrance to a large or magnificent building, esp. when emphasized in architectural treatment; any door or gate', 'Oxford English Dictionary', [])
-    +show-section('fever', 'Fever', 'Tuesday, May 6, 2014', 'Gallery 1412', 'A state of intense nervous excitement, agitation, heat; an instance of this.', 'Oxford English Dictionary', ['fever_0.jpg', 'fever_1.jpg',  'fever_2.jpg', 'fever_3.jpg', 'fever_4.jpg'])
-    +show-section('gems', 'Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', 'Something prized especially for great beauty or perfection.', 'Merriam-Webster', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
-    +show-section('collision', 'Collision', 'Tuesday, January 7, 2014', 'Gallery 1412', 'An encounter between particles (as atoms or molecules) resulting in exchange or transformation of energy.', 'Merriam-Webster', ['collision_0.jpg', 'collision_1.jpg',  'collision_2.jpg', 'collision_3.jpg', 'collision_4.jpg'])
-    +show-section('eulogy', 'Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
+    +show-section('Portals', 'Fall 2014', 'Location TBA', 'A door, gate, doorway, or gateway, of stately or elaborate construction; the entrance to a large or magnificent building, esp. when emphasized in architectural treatment; any door or gate', 'Oxford English Dictionary', [])
+    +show-section('Fever', 'Tuesday, May 6, 2014', 'Gallery 1412', 'A state of intense nervous excitement, agitation, heat; an instance of this.', 'Oxford English Dictionary', ['fever_0.jpg', 'fever_1.jpg',  'fever_2.jpg', 'fever_3.jpg', 'fever_4.jpg'])
+    +show-section('Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', 'Something prized especially for great beauty or perfection.', 'Merriam-Webster', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
+    +show-section('Collision', 'Tuesday, January 7, 2014', 'Gallery 1412', 'An encounter between particles (as atoms or molecules) resulting in exchange or transformation of energy.', 'Merriam-Webster', ['collision_0.jpg', 'collision_1.jpg',  'collision_2.jpg', 'collision_3.jpg', 'collision_4.jpg'])
+    +show-section('Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
