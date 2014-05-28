@@ -39,6 +39,8 @@ html(lang='en')
     script(src='//code.jquery.com/jquery-2.1.0.min.js')
     script(src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
     script(src='//use.typekit.net/amt5afx.js')
+    link(rel='stylesheet', src='/static/ekko-lightbox.min.css')
+    script(src='/static/ekko-lightbox.min.js')
     script(type='text/javascript').
       Typekit.load();
       $(window).on("hashchange", function () {
@@ -83,7 +85,7 @@ html(lang='en')
       | }
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body(data-spy='scroll', data-target='#lm-nav', data-offset='60')
-    .container-fluid#about: .container
+    .container-fluid#About: .container
       .row: .col-md-12
         center
           img.img-responsive(src='/static/logo.png', vspace='20px')
