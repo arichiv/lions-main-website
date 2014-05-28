@@ -23,6 +23,10 @@ mixin show-section(show_id, show_name, show_date, show_location, show_def, show_
               else
                 .item
                   center: img.img-responsive(src='static/'+val)
+            a(class='left carousel-control' href='#carousel-'+show_id data-slide='prev')
+              span(class='glyphicon glyphicon-chevron-left')
+            a(class='right carousel-control' href='#carousel-'+show_id data-slide='next')
+              span(class='glyphicon glyphicon-chevron-right')
         br
 
 doctype html
@@ -40,6 +44,9 @@ html(lang='en')
         window.scrollTo(window.scrollX, window.scrollY - 50);
       });
     style
+      | .carousel-control {
+      |   background-image: none !important;
+      | }
       | #about {
       |   color: black;
       |   font-family: "cubano";
