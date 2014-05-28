@@ -1,24 +1,29 @@
-mixin show-section(show_style, show_name, show_info)
-  .container-fluid(id=show_style)
+mixin show-section(show_id, show_name, show_date, show_location, show_def, show_def_src, carousel_images)
+  .container-fluid(id=show_id)
     .container: .row: .col-md-12
       h1(class='text-center')= show_name
-      h2(class='text-center')= show_info
-      #show1-carousel.carousel.slide(data-ride='carousel')
-        ol.carousel-indicators
-          li(data-target='#show1-carousel' data-slide-to='0' class='active')
-          li(data-target='#show1-carousel' data-slide-to='1')
-          li(data-target='#show1-carousel' data-slide-to='2')
-        .carousel-inner
-          .item.active
-            img(src='/static/logo.png')
-          .item
-            img(src='/static/logo.png')
-          .item
-            img(src='/static/logo.png')
-        a(class='left carousel-control' href='#show1-carousel' data-slide='prev')
-          span(class='glyphicon glyphicon-chevron-left')
-        a(class='right carousel-control' href='#show1-carousel' data-slide='next')
-          span(class='glyphicon glyphicon-chevron-right')
+      h1(class='text-center')= show_date
+      h1(class='text-center')= show_location
+      blockquote.blockquote-reverse
+        h2= show_def
+        footer= show_def_src
+      if carousel_images
+        carousel.slide(data-ride='carousel', id='carousel-'+show_id)
+          ol.carousel-indicators
+            each val, index in carousel_images
+              if index == 0
+                li.active(data-target='#carousel-'+show_id data-slide-to=index)
+              else
+                li(data-target='#carousel-'+show_id data-slide-to=index)
+          .carousel-inner
+            each val, index in carousel_images
+              if index == 0
+                .item.active
+                  center: img.img-responsive(src='static/'+val)
+              else
+                .item
+                  center: img.img-responsive(src='static/'+val)
+        br
 
 doctype html
 html(lang='en')
@@ -33,16 +38,33 @@ html(lang='en')
       Typekit.load();
     style
       | #about {
-      |  font-family: "cubano";
+      |   color: black;
+      |   font-family: "cubano";
+      |   background-image: url('/static/rockywall.png');
+      | }
+      | #portals {
+      |   color: white;
+      |   font-family: "atrament-web";
+      |   background-image: url('/static/congruent_outline.png');
+      | }
+      | #fever {
+      |   color: black;
+      |   font-family: "atrament-web";
+      |   background-image: url('/static/congruent_outline.png');
+      | }
+      | #eulogy {
+      |   color: white;
+      |   font-family: "jbt-annabelle";
+      |   background-image: url('/static/pinstriped_suit.png');
       | }
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body(data-spy='scroll', data-target='#lm-nav')
-    .container#about
+    .container-fluid#about: .container
       .row: .col-md-12
         center
           img.img-responsive(src='/static/logo.png', vspace='20px')
       .row(style='height:52px')
-        nav(id='lm-nav', class='navbar-default', role='navigation', data-spy='affix', data-offset-top='284', style='top:10px;z-index:1000')
+        nav(id='lm-nav', class='navbar-default', role='navigation', data-spy='affix', data-offset-top='338', style='top:10px;z-index:1000')
           .container
             .navbar-header
               button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#lm-nav-content')
@@ -53,13 +75,12 @@ html(lang='en')
             #lm-nav-content.collapse.navbar-collapse
               ul(class='nav navbar-nav')
                 li: a(href='#about') About Us
-                li: a(href='#show1') Show 1
-                li: a(href='#show2') Show 2
+                li: a(href='#eulogy') Eulogy
               ul(class='nav navbar-nav navbar-right')
                 li: a(href='https://www.facebook.com/lionsmainartcollective') Facebook
       .row: .col-md-12
         h2.
           Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
-        br
-    +show-section('show1', 'Show 1', 'The First Show')
-    +show-section('show2', 'Show 2', 'The Second Show')
+        img.img-responsive(src='/static/people.jpg', vspace='20px')
+    +show-section('portals', 'Portals', 'Fall 2014', 'Location TBA', 'A door, gate, doorway, or gateway, of stately or elaborate construction; the entrance to a large or magnificent building, esp. when emphasized in architectural treatment; any door or gate', 'Oxford English Dictionary', [])
+    +show-section('eulogy', 'Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
