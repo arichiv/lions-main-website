@@ -36,6 +36,9 @@ html(lang='en')
     script(src='//use.typekit.net/amt5afx.js')
     script(type='text/javascript').
       Typekit.load();
+      $(window).on("hashchange", function () {
+        window.scrollTo(window.scrollX, window.scrollY - 50);
+      });
     style
       | #about {
       |   color: black;
@@ -71,7 +74,7 @@ html(lang='en')
       |   height: 500px !important;
       | }
     meta(name='viewport', content='width=device-width, initial-scale=1')
-  body(data-spy='scroll', data-target='#lm-nav')
+  body(data-spy='scroll', data-target='#lm-nav', data-offset='60')
     .container-fluid#about: .container
       .row: .col-md-12
         center
