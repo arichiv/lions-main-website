@@ -18,11 +18,13 @@ mixin show-section(show_name, show_date, show_location, show_def, show_def_src, 
           .carousel-inner
             each val, index in carousel_images
               if index == 0
-                .item.active
-                  center: img.img-responsive(src='/static/'+val)
+                .item.active: center
+                  a(href='/static/'+val data-toggle='lightbox')
+                    img.img-responsive(src='/static/'+val)
               else
-                .item
-                  center: img.img-responsive(src='/static/'+val)
+                .item: center
+                  a(href='/static/'+val data-toggle='lightbox')
+                    img.img-responsive(src='/static/'+val)
             a(class='left carousel-control' href='#carousel-'+show_name data-slide='prev')
               span(class='glyphicon glyphicon-chevron-left')
             a(class='right carousel-control' href='#carousel-'+show_name data-slide='next')
@@ -45,6 +47,10 @@ html(lang='en')
       Typekit.load();
       $(window).on("hashchange", function () {
         window.scrollTo(window.scrollX, window.scrollY - 50);
+      });
+      $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+          event.preventDefault();
+          $(this).ekkoLightbox();
       });
     style
       | .carousel-control {
