@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var robots = require('robots.txt')
 
 var app = express();
 
@@ -9,6 +10,7 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.logger('dev'));
   app.use("/static/", express.static(__dirname + '/static/'));
+  app.use(robots(__dirname + '/robots.txt'))
 });
 
 app.get('/', function(req, res) {
