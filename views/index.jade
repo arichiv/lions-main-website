@@ -7,7 +7,7 @@ mixin show-section(show_name, show_date, show_location, show_def, show_def_src, 
       blockquote.blockquote-reverse
         h2= show_def
         footer= show_def_src
-      if carousel_images
+      if carousel_images.length > 0
         carousel.slide(data-ride='carousel', id='carousel-'+show_name)
           ol.carousel-indicators
             each val, index in carousel_images
