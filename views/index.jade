@@ -44,8 +44,8 @@ html(lang='en')
     link(rel='stylesheet', src='/static/ekko-lightbox.min.css')
     script(src='/static/ekko-lightbox.min.js')
     script(type='text/javascript').
+      Typekit.load();
       function js_init() {
-        Typekit.load();
         $(window).on("hashchange", function () {
           window.scrollTo(window.scrollX, window.scrollY - $('#lm-nav').height());
         });
@@ -71,7 +71,7 @@ html(lang='en')
       | }
       | #Portals {
       |   color: white;
-      |   font-family: "atrament-web";
+      |   font-family: "source-code-pro";
       |   background-image: url('/static/escheresque_ste.png');
       | }
       | #Fever {
@@ -86,7 +86,7 @@ html(lang='en')
       | }
       | #Collision {
       |   color: black;
-      |   font-family: "sneakers-script";
+      |   font-family: "mono45-headline";
       |   background-image: url('/static/rockywall.png');
       | }
       | #Eulogy {
