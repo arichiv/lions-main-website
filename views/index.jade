@@ -43,15 +43,6 @@ html(lang='en')
     script(src='//use.typekit.net/amt5afx.js')
     link(rel='stylesheet', src='/static/ekko-lightbox.min.css')
     script(src='/static/ekko-lightbox.min.js')
-    script(type='text/javascript').
-      Typekit.load();
-      $(window).on("hashchange", function () {
-        window.scrollTo(window.scrollX, window.scrollY - 50);
-      });
-      $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-          event.preventDefault();
-          $(this).ekkoLightbox();
-      });
     style
       | .carousel-control {
       |   background-image: none !important;
@@ -92,11 +83,11 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body(data-spy='scroll', data-target='#lm-nav', data-offset='60')
     .container-fluid#About: .container
-      .row: .col-md-12
+      .row#lm-header: .col-md-12
         center
           img.img-responsive(src='/static/logo.png', vspace='20px')
-      .row(style='height:52px')
-        nav(id='lm-nav', class='navbar-default', role='navigation', data-spy='affix', data-offset-top='338', style='top:10px;z-index:1000')
+      .row#lm-nav-container
+        nav(id='lm-nav', class='navbar-default', role='navigation', style='top:10px;z-index:1000')
           .container
             .navbar-header
               button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#lm-nav-content')
@@ -124,3 +115,18 @@ html(lang='en')
     +show-section('Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', 'Something prized especially for great beauty or perfection.', 'Merriam-Webster', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
     +show-section('Collision', 'Tuesday, January 7, 2014', 'Gallery 1412', 'An encounter between particles (as atoms or molecules) resulting in exchange or transformation of energy.', 'Merriam-Webster', ['collision_0.jpg', 'collision_1.jpg',  'collision_2.jpg', 'collision_3.jpg', 'collision_4.jpg'])
     +show-section('Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
+    script(type='text/javascript').
+      Typekit.load();
+      $(window).on("hashchange", function () {
+        window.scrollTo(window.scrollX, window.scrollY - $('#lm-nav').height());
+      });
+      $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+          event.preventDefault();
+          $(this).ekkoLightbox();
+      });
+      $('#lm-nav').affix({
+        offset: {
+          top: $('#lm-header').height() - 10
+        }
+      });
+      $('#lm-nav-container').css("min-height", $('#lm-nav').height());
