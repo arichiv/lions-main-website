@@ -1,12 +1,16 @@
 mixin show-section(show_name, show_date, show_location, show_def, show_def_src, carousel_images)
   .container-fluid(id=show_name)
     .container: .row: .col-md-12
+      br
+      br
       h1(class='text-center')= show_name
       h2(class='text-center')= show_date + ' - ' + show_location
+      br
       blockquote.blockquote-reverse
         h3= show_def
         footer= show_def_src
       if carousel_images.length > 0
+        br
         carousel.slide(data-ride='carousel', id='carousel-'+show_name)
           ol.carousel-indicators
             each val, index in carousel_images
@@ -29,6 +33,8 @@ mixin show-section(show_name, show_date, show_location, show_def, show_def_src, 
           a(class='right carousel-control' href='#carousel-'+show_name data-slide='next')
               span(class='glyphicon glyphicon-chevron-right')
         br
+      br
+      br
 
 doctype html
 html(lang='en')
@@ -123,9 +129,12 @@ html(lang='en')
                 li: a(href='https://www.facebook.com/lionsmainartcollective' target='_blank') Facebook
                 li: a(href='mailto:lionsmainart@gmail.com') Contact Us
       .row: .col-md-12
+        br
         h3.
           Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
+        br
         img.img-responsive(src='/static/people.jpg', vspace='20px')
+        br
     +show-section('Portals', 'Fall 2014', 'TBA', 'A door, gate, doorway, or gateway, of stately or elaborate construction; the entrance to a large or magnificent building, esp. when emphasized in architectural treatment; any door or gate', 'Oxford English Dictionary', [])
     +show-section('Fever', 'Tuesday, May 6, 2014', 'Gallery 1412', 'A state of intense nervous excitement, agitation, heat; an instance of this.', 'Oxford English Dictionary', ['fever_0.jpg', 'fever_1.jpg',  'fever_2.jpg', 'fever_3.jpg', 'fever_4.jpg'])
     +show-section('Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', ' An object of rare beauty or priceless worth; the choicest part of (anything).', 'Oxford English Dictionary', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
