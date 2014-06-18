@@ -1,6 +1,7 @@
 {
   "name": "lions-main",
   "version": "1.0.0",
+  "description": "Lion's Main Website",
   "repository": {
     "type": "git",
     "url": "git://github.com/aric/lions-main.git"
