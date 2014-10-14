@@ -9,6 +9,7 @@
   "dependencies": {
     "express": "4.9.x",
     "jade": "1.7.x",
+    "pg": "3.5.x",
     "robots.txt": "1.1.x"
   },
   "engines": {
