@@ -15,7 +15,8 @@
     "passport": "0.2.x",
     "passport-facebook": "1.0.x",
     "pg": "3.5.x",
-    "robots.txt": "1.1.x"
+    "robots.txt": "1.1.x",
+    "sequelize": "2.0.0-rc1"
   },
   "engines": {
     "node": "0.10.x",
