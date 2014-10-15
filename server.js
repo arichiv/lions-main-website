@@ -51,9 +51,9 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use("/static/", express.static(__dirname + '/static/'));
 app.use(robots(__dirname + '/robots.txt'))
-app.use(cookieParser());
+app.use(cookieParser(process.env.EXPRESS_SESSION_SECRET));
 app.use(bodyParser());
-app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET }));
+app.use(expressSession({secret: process.env.EXPRESS_SESSION_SECRET}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.get('/', function(req, res) {
