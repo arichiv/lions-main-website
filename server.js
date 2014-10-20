@@ -39,9 +39,16 @@ var db = new sequelize(match[5], match[1], match[2], {
   host:     match[3],
   logging:  true
 })
-var LMACProfile = db.define('LMACProfile', {
-  uid: { type: sequelize.STRING, primaryKey: true}
-})
+var LMACProfile = db.define(
+  'LMACProfile',
+  {
+    uid: { type: sequelize.STRING, primaryKey: true},
+    enabled: { type: sequelize.BOOLEAN, defaultValue: false },
+    name: { type: sequelize.TEXT, defaultValue: '' },
+    website: { type: sequelize.TEXT, defaultValue: '' },
+    biography: { type: sequelize.TEXT, defaultValue: '' }
+  }
+)
 
 
 // App setup
