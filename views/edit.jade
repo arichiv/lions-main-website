@@ -1,3 +1,22 @@
 doctype html
 html(lang='en')
-  body #{uid}
+  body
+    form(target="#", method="post")
+      div #{profile.uid}
+      div
+        | Enabled:
+        if profile.enabled == true
+          input(type='checkbox', name="enabled", checked=true)
+        else
+          input(type='checkbox', name="enabled")
+      div
+        | Name:
+        input(type="text", name="name", value="#{profile.name}")
+      div
+        | Website:
+        input(type="text", name="website", value="#{profile.website}")
+      div
+        | Biography:
+        textarea(type="text", name="biography") #{profile.biography}
+      div
+        button(type="submit") Submit

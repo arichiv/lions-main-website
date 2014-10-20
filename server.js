@@ -88,7 +88,7 @@ app.get('/edit', function(req, res) {
       defaults: { uid: req.user.id }
     })
     .success(function(profile, created) {
-      res.render("edit", {uid: profile.uid});
+      res.render("edit", {profile: profile});
     })
 });
 
