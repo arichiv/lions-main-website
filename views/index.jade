@@ -37,7 +37,12 @@ mixin show-section(show_name, show_date, show_location, show_def, show_def_src, 
       br
 
 mixin show-profile(profile)
-  div
+  br
+  br
+  h1: a(href=profile.website, target="__blank")= profile.name
+  h3= profile.biography
+  br
+  br
 
 doctype html
 html(lang='en')
@@ -72,10 +77,14 @@ html(lang='en')
       | .carousel-control {
       |   background-image: none !important;
       | }
-      | #About {
+      | #About, #Artists {
       |   color: black;
       |   font-family: "cubano";
       |   background-image: url('/static/tree_bark.png');
+      | }
+      | #Artists a {
+      |   color: black;
+      |   text-decoration: underline;
       | }
       | #Portals {
       |   color: white;
@@ -131,6 +140,7 @@ html(lang='en')
                 li: a(href='#Gems') Gems
                 li: a(href='#Collision') Collision
                 li: a(href='#Eulogy') Eulogy
+                li: a(href='#Artists') Artists
               ul(class='nav navbar-nav navbar-right')
                 li: a(href='https://www.facebook.com/lionsmainartcollective' target='_blank') Facebook
                 li: a(href='mailto:lionsmainart@gmail.com') Contact Us
@@ -147,5 +157,7 @@ html(lang='en')
     +show-section('Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', ' An object of rare beauty or priceless worth; the choicest part of (anything).', 'Oxford English Dictionary', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
     +show-section('Collision', 'Tuesday, January 7, 2014', 'Gallery 1412', 'Coming into contact (with no notion of violent opposition or hostility); action of mind upon mind, or the like.', 'Oxford English Dictionary', ['collision_0.jpg', 'collision_1.jpg',  'collision_2.jpg', 'collision_3.jpg', 'collision_4.jpg'])
     +show-section('Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
-    each profile in profiles
-      +show-profile(profile)
+    .container-fluid(id='Artists')
+      .container: .row: .col-md-12
+        each profile in profiles
+          +show-profile(profile)
