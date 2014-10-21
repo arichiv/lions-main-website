@@ -36,6 +36,9 @@ mixin show-section(show_name, show_date, show_location, show_def, show_def_src, 
       br
       br
 
+mixin show-profile(profile)
+  div
+
 doctype html
 html(lang='en')
   head
@@ -144,3 +147,5 @@ html(lang='en')
     +show-section('Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', ' An object of rare beauty or priceless worth; the choicest part of (anything).', 'Oxford English Dictionary', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
     +show-section('Collision', 'Tuesday, January 7, 2014', 'Gallery 1412', 'Coming into contact (with no notion of violent opposition or hostility); action of mind upon mind, or the like.', 'Oxford English Dictionary', ['collision_0.jpg', 'collision_1.jpg',  'collision_2.jpg', 'collision_3.jpg', 'collision_4.jpg'])
     +show-section('Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
+    each profile in profiles
+      +show-profile(profile)
