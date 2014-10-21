@@ -105,6 +105,7 @@ app.post('/edit-save', function(req, res) {
   LMACProfile
     .find({
       where: { uid: req.user.id },
+      order: 'name',
     })
     .complete(function(err, profile) {
       profile.enabled = Boolean(req.body.enabled);
