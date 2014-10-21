@@ -66,15 +66,15 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.render("index");
 });
-app.get('/login', passport.authenticate('facebook'));
+app.get(
+    '/login',
+    passport.authenticate('facebook')
+);
 app.get(
   '/login/callback',
   passport.authenticate(
     'facebook',
-    {
-      successRedirect: '/edit',
-      failureRedirect: '/'
-    }
+    { successRedirect: '/edit', failureRedirect: '/' }
   )
 );
 app.get('/edit', function(req, res) {
@@ -90,6 +90,25 @@ app.get('/edit', function(req, res) {
     .success(function(profile, created) {
       res.render("edit", {profile: profile});
     })
+});
+app.post('/edit-save', function(req, res) {
+  if (!req.isAuthenticated()) {
+    res.redirect('/login');
+    return;
+  }
+  LMACProfile
+    .find({
+      where: { uid: req.user.id },
+    })
+    .complete(function(err, profile) {
+      profile.enabled = Boolean(req.body.enabled);
+      profile.name = req.body.name;
+      profile.website = req.body.website;
+      profile.biography = req.body.biography;
+      profile.save().success(function() {
+        res.redirect('/edit');
+      });
+    });
 });
 
 db.sync().complete(function() {
