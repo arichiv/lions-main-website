@@ -64,7 +64,13 @@ app.use(expressSession({secret: process.env.EXPRESS_SESSION_SECRET}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.get('/', function(req, res) {
-  res.render("index");
+  LMACProfile
+    .findAll({
+      where: { enabled: true },
+    })
+    .success(function(profiles) {
+      res.render("index", {profiles: profiles});
+    });
 });
 app.get(
     '/login',
