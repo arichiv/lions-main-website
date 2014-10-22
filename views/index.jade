@@ -38,10 +38,8 @@ mixin show-section(show_name, show_date, show_location, show_def, show_def_src, 
 
 mixin show-profile(profile)
   br
-  br
   h1: a(href=profile.website, target="__blank")= profile.name
   h3= profile.biography
-  br
   br
 
 doctype html
@@ -159,5 +157,7 @@ html(lang='en')
     +show-section('Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
     .container-fluid(id='Artists')
       .container: .row: .col-md-12
+        br
         each profile in profiles
           +show-profile(profile)
+        br
