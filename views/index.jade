@@ -3,12 +3,12 @@ mixin show-section(show_name, show_id, show_date, show_location, show_def, show_
     .container: .row: .col-md-12
       br
       br
-      h1(class='text-center')= show_name
-      h2(class='text-center')= show_date + ' - ' + show_location
+      h1(class='text-center')!= show_name
+      h2(class='text-center')!= show_date + ' - ' + show_location
       br
       blockquote.blockquote-reverse
         h3!= show_def
-        footer= show_def_src
+        footer!= show_def_src
       if carousel_images.length > 0
         br
         .carousel.slide(data-ride='carousel', id='carousel-'+show_id)
