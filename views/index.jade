@@ -84,6 +84,11 @@ html(lang='en')
       |   color: black;
       |   text-decoration: underline;
       | }
+      | #Shorts {
+      |   color: white;
+      |   font-family: "source-code-pro";
+      |   background-image: url('/static/escheresque_ste.png');
+      | }
       | #Portals {
       |   color: white;
       |   font-family: "source-code-pro";
@@ -133,6 +138,7 @@ html(lang='en')
             #lm-nav-content.collapse.navbar-collapse
               ul(class='nav navbar-nav')
                 li: a(href='#About') About Us
+                li: a(href='#Shorts') Shorts
                 li: a(href='#Portals') Portals
                 li: a(href='#Fever') Fever
                 li: a(href='#Gems') Gems
@@ -150,6 +156,7 @@ html(lang='en')
         br
         img.img-responsive(src='/static/people.jpg', vspace='20px')
         br
+    +show-section('Film Festival', 'Shorts', 'Thursday, January 8, 2015', '<a href="http://central-cinema.com/">Central Cinema</a>', 'The Lion\'s Main Art Collective is partnering with Central Cinema to create a night of Trans and Queer short films from local Washington artists. We\'ll be awarding a $100 prize selected by our curation team and a $50 prize selected by the audience, to help artists create more work in the future! <a href="https://filmfreeway.com/festival/lionsmainart">Submit yours today!</a>', 'The Lions', [])
     +show-section('Portals', 'Portals', 'Friday, September 19, 2014', 'SODO Commerce Building', 'A small glimpse into an alternate reality, or a means of traveling between realities. A gateway, a peephole, a liminal threshold, a porous barrier, a hole to transformative spaces.', 'The Lions', ['portals_0.jpg','portals_1.jpg', 'portals_2.jpg', 'portals_3.jpg', 'portals_4.jpg'])
     +show-section('Fever', 'Fever', 'Tuesday, May 6, 2014', 'Gallery 1412', 'A state of intense nervous excitement, agitation, heat; an instance of this.', 'Oxford English Dictionary', ['fever_0.jpg', 'fever_1.jpg',  'fever_2.jpg', 'fever_3.jpg', 'fever_4.jpg'])
     +show-section('Gems', 'Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', ' An object of rare beauty or priceless worth; the choicest part of (anything).', 'Oxford English Dictionary', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
