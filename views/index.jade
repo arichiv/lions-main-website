@@ -40,6 +40,7 @@ mixin show-profile(profile)
   br
   .row
     .col-md-3
+      img(src='/static/logo_square.png' width='250' height='250')
     .col-md-9
       h1: a(href=profile.website, target="__blank")= profile.name
       h3= profile.biography
