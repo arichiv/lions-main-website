@@ -39,9 +39,9 @@ mixin show-section(show_name, show_id, show_date, show_location, show_def, show_
 mixin show-profile(profile)
   br
   .row
-    .col-md-3
-      img(src='/static/logo_square.png' width='250' height='250')
-    .col-md-9
+    .col-md-2
+      img.profile-image(src='/static/logo_square.png')
+    .col-md-10
       h1: a(href=profile.website, target="__blank")= profile.name
       h3= profile.biography
   br
@@ -123,6 +123,10 @@ html(lang='en')
       | }
       | .carousel-inner {
       |   max-height: 500px !important;
+      | }
+      | .profile-image {
+      |   height: 150px !important;
+      |   width: 150px !important;
       | }
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body(data-spy='scroll', data-target='#lm-nav', data-offset='60' onload='js_init()')
