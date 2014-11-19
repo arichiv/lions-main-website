@@ -88,12 +88,11 @@ app.get('/image/:uid', function(req, res) {
     })
     .complete(function(err, image) {
       if (image) {
-        var img = new Buffer(image.data, 'base64');
         res.writeHead(200, {
           'Content-Type': 'image/png',
-          'Content-Length': img.length
+          'Content-Length': image.data.length
         });
-        res.end(img);
+        res.end(image.data);
       } else {
         fs.readFile('static/logo_square.png', 'base64', function (err, data) {
           var img = new Buffer(data, 'base64');
@@ -149,15 +148,16 @@ app.post('/edit-save', function(req, res) {
         profile.website = fields.website;
         profile.biography = fields.biography;
         profile.save().success(function() {
-        if (files.image) {
+        if (files.image.path) {
           fs.readFile(files.image.path, 'base64', function (err, data) {
+            var img = new Buffer(data, 'base64');
             LMACProfileImage
               .findOrCreate({
                 where: { uid: req.user.id },
                 defaults: { uid: req.user.id }
               })
               .success(function(image, created) {
-                image.data = data;
+                image.data = img;
                 image.save().success(function() {
                   res.redirect('/edit');
                 });
