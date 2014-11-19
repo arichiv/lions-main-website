@@ -81,15 +81,30 @@ app.get('/', function(req, res) {
       res.render("index", {profiles: profiles});
     });
 });
-app.get('/image/:id', function(req, res) {
-  fs.readFile('static/logo_square.png', 'base64', function (err, data) {
-    var img = new Buffer(data, 'base64');
-    res.writeHead(200, {
-      'Content-Type': 'image/png',
-      'Content-Length': img.length
+app.get('/image/:uid', function(req, res) {
+  LMACProfileImage
+    .find({
+      where: { uid: req.param("uid") },
+    })
+    .complete(function(err, image) {
+      if (image) {
+        var img = new Buffer(image.data, 'base64');
+        res.writeHead(200, {
+          'Content-Type': 'image/png',
+          'Content-Length': img.length
+        });
+        res.end(img);
+      } else {
+        fs.readFile('static/logo_square.png', 'base64', function (err, data) {
+          var img = new Buffer(data, 'base64');
+          res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': img.length
+          });
+          res.end(img);
+        });
+      }
     });
-    res.end(img);
-  });
 });
 app.get(
     '/login',
