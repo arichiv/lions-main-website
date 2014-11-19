@@ -40,7 +40,7 @@ mixin show-profile(profile)
   br
   .row
     .col-md-2
-      .profile-image-circle(style='background-image: url("/static/logo_square.png")')
+      .profile-image-circle(style='background-image: url("/image/'+profile.uid+'")')
     .col-md-10
       h1: a(href=profile.website, target="__blank")= profile.name
       h3= profile.biography
