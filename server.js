@@ -76,6 +76,7 @@ app.get('/', function(req, res) {
   LMACProfile
     .findAll({
       where: { enabled: true },
+      order: 'name',
     })
     .success(function(profiles) {
       res.render("index", {profiles: profiles});
@@ -140,7 +141,6 @@ app.post('/edit-save', function(req, res) {
     LMACProfile
       .find({
         where: { uid: req.user.id },
-        order: 'name',
       })
       .complete(function(err, profile) {
         profile.enabled = Boolean(fields.enabled);
