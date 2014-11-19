@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var express = require('express');
 var expressSession = require('express-session');
+var fs = require('fs');
 var http = require('http');
 var passport = require('passport')
 var passportFacebook = require('passport-facebook');
@@ -78,6 +79,16 @@ app.get('/', function(req, res) {
     .success(function(profiles) {
       res.render("index", {profiles: profiles});
     });
+});
+app.get('/image/:id', function(req, res) {
+  fs.readFile('static/logo_square.png', 'base64', function (err, data) {
+    var img = new Buffer(data, 'base64');
+    res.writeHead(200, {
+      'Content-Type': 'image/png',
+      'Content-Length': img.length
+    });
+    res.end(img);
+  });
 });
 app.get(
     '/login',
