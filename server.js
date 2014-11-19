@@ -49,6 +49,13 @@ var LMACProfile = db.define(
     biography: { type: sequelize.TEXT, defaultValue: '' }
   }
 )
+var LMACProfileImage = db.define(
+  'LMACProfileImage',
+  {
+    uid: { type: sequelize.STRING, primaryKey: true},
+    data: { type: sequelize.BLOB, defaultValue: '' },
+  }
+)
 
 
 // App setup
