@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   body
-    form(action="/edit-save", method="post")
+    form(action="/edit-save", method="post", enctype="multipart/form-data")
       div #{profile.uid}
       div
         | Enabled:
@@ -18,5 +18,8 @@ html(lang='en')
       div
         | Biography:
         textarea(type="text", name="biography") #{profile.biography}
+      div
+        | Image:
+        input(type="file", name="image")
       div
         button(type="submit") Submit
