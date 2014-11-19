@@ -2,6 +2,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var express = require('express');
 var expressSession = require('express-session');
+var formidable = require('formidable');
 var fs = require('fs');
 var http = require('http');
 var passport = require('passport')
@@ -120,20 +121,39 @@ app.post('/edit-save', function(req, res) {
     res.redirect('/login');
     return;
   }
-  LMACProfile
-    .find({
-      where: { uid: req.user.id },
-      order: 'name',
-    })
-    .complete(function(err, profile) {
-      profile.enabled = Boolean(req.body.enabled);
-      profile.name = req.body.name;
-      profile.website = req.body.website;
-      profile.biography = req.body.biography;
-      profile.save().success(function() {
-        res.redirect('/edit');
+  var form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files) {
+    LMACProfile
+      .find({
+        where: { uid: req.user.id },
+        order: 'name',
+      })
+      .complete(function(err, profile) {
+        profile.enabled = Boolean(fields.enabled);
+        profile.name = fields.name;
+        profile.website = fields.website;
+        profile.biography = fields.biography;
+        profile.save().success(function() {
+        if (files.image) {
+          fs.readFile(files.image.path, 'base64', function (err, data) {
+            LMACProfileImage
+              .findOrCreate({
+                where: { uid: req.user.id },
+                defaults: { uid: req.user.id }
+              })
+              .success(function(image, created) {
+                image.data = data;
+                image.save().success(function() {
+                  res.redirect('/edit');
+                });
+              });
+          });
+        } else {
+          res.redirect('/edit');
+        }
       });
     });
+  });
 });
 
 db.sync().complete(function() {
