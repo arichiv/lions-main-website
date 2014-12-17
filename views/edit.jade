@@ -4,7 +4,7 @@ html(lang='en')
     form(action="/edit-save", method="post", enctype="multipart/form-data")
       div #{profile.uid}
       div
-        | Enabled:
+        | IF YOU DON'T CHECK THIS BOX YOUR PROFILE WON'T APPEAR ON THE WEBSITE:
         if profile.enabled == true
           input(type='checkbox', name="enabled", checked=true)
         else
