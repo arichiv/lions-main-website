@@ -5,6 +5,7 @@ var expressSession = require('express-session');
 var formidable = require('formidable');
 var fs = require('fs');
 var http = require('http');
+var imagemagick = require('imagemagick');
 var passport = require('passport')
 var passportFacebook = require('passport-facebook');
 var pg = require('pg');
@@ -89,11 +90,14 @@ app.get('/image/:uid', function(req, res) {
     })
     .complete(function(err, image) {
       if (image) {
-        res.writeHead(200, {
-          'Content-Type': 'image/png',
-          'Content-Length': image.data.length
+        imagemagick.resize({
+          srcData: image.data,
+          height: 300,
+          width: 300
+        }, function(err, stdout, stderr){
+          res.contentType("image/jpeg");
+          res.end(stdout, 'binary');
         });
-        res.end(image.data);
       } else {
         fs.readFile('static/logo_square.png', 'base64', function (err, data) {
           var img = new Buffer(data, 'base64');
