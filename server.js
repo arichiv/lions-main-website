@@ -152,7 +152,7 @@ app.post('/edit-save', function(req, res) {
         profile.website = website;
         profile.biography = fields.biography;
         profile.save().success(function() {
-        if (files.image.path) {
+        if (files.image.size) {
           fs.readFile(files.image.path, 'base64', function (err, data) {
             var img = new Buffer(data, 'base64');
             LMACProfileImage
