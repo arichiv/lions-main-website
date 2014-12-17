@@ -145,7 +145,11 @@ app.post('/edit-save', function(req, res) {
       .complete(function(err, profile) {
         profile.enabled = Boolean(fields.enabled);
         profile.name = fields.name;
-        profile.website = fields.website;
+        var website = fields.website;
+        if (website.substr(0, 4) != 'http') {
+          website = 'http://' + website;
+        }
+        profile.website = website;
         profile.biography = fields.biography;
         profile.save().success(function() {
         if (files.image.path) {
