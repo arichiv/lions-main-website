@@ -1,0 +1,116 @@
+html(lang='en')
+  head
+    title='Lion\'s Main Art Collective'
+    link(rel='shortcut icon' href='/static/icon.png')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
+    script(src='//code.jquery.com/jquery-2.1.1.min.js')
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    script(src='//use.typekit.net/amt5afx.js')
+    link(rel='stylesheet', src='/static/ekko-lightbox.min.css')
+    script(src='/static/ekko-lightbox.min.js')
+    script(type='text/javascript').
+      Typekit.load();
+      function js_init() {
+        $(window).on("hashchange", function () {
+          window.scrollTo(window.scrollX, window.scrollY - $('#lm-nav').height());
+        });
+        $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        $('#lm-nav').affix({
+          offset: {
+            top: $('#lm-header').height() - 10
+          }
+        });
+        $('#lm-nav-container').css("min-height", $('#lm-nav').height());
+      }
+    style
+      | .carousel-control {
+      |   background-image: none !important;
+      | }
+      | .show_section a {
+      |   color: black !important;
+      |   text-decoration: underline !important;
+      | }
+      | #About, #Artists {
+      |   color: black;
+      |   font-family: "cubano";
+      |   background-image: url('/static/tree_bark.png');
+      | }
+      | #Shorts {
+      |   color: black;
+      |   font-family: "carbon";
+      |   background-image: url('/static/logo_x_pattern.png');
+      | }
+      | #Portals {
+      |   color: white;
+      |   font-family: "source-code-pro";
+      |   background-image: url('/static/escheresque_ste.png');
+      | }
+      | #Fever {
+      |   color: black;
+      |   font-family: "flood-std";
+      |   background-image: url('/static/dimension.png');
+      | }
+      | #Gems {
+      |   color: black;
+      |   font-family: "sister-frisky";
+      |   background-image: url('/static/congruent_pentagon.png');
+      | }
+      | #Collision {
+      |   color: black;
+      |   font-family: "mono45-headline";
+      |   background-image: url('/static/rockywall.png');
+      | }
+      | #Eulogy {
+      |   color: white;
+      |   font-family: "jbt-annabelle";
+      |   background-image: url('/static/pinstriped_suit.png');
+      | }
+      | .carousel-inner img {
+      |   max-height: 500px !important;
+      | }
+      | .carousel-inner {
+      |   max-height: 500px !important;
+      | }
+      | .profile-image-circle {
+      |   background-size: cover;
+      |   background-position: center center;
+      |   background-repeat: no-repeat;
+      |   border-radius: 75px;
+      |   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+      |   height: 150px !important;
+      |   width: 150px !important;
+      | }
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+  body(onload='js_init()')
+    .container-fluid#About: .container
+      .row#lm-header: .col-md-12
+        center
+          img.img-responsive(src='/static/logo.png', vspace='20px')
+      .row#lm-nav-container
+        nav(id='lm-nav', class='navbar-default', role='navigation', style='top:10px;z-index:1000')
+          .container
+            .navbar-header
+              button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#lm-nav-content' style='margin:8px')
+                span(class='sr-only') Toggle navigation
+                span(class='icon-bar')
+                span(class='icon-bar')
+                span(class='icon-bar')
+            #lm-nav-content.collapse.navbar-collapse
+              ul(class='nav navbar-nav')
+                li: a(href='/about/') About
+                li: a(href='/shows/') Shows
+                li: a(href='/artists/') Artists
+              ul(class='nav navbar-nav navbar-right')
+                li: a(href='https://www.facebook.com/lionsmainartcollective' target='_blank') Facebook
+                li: a(href='mailto:lionsmainart@gmail.com') Contact Us
+                li: a(href='https://co.clickandpledge.com/Default.aspx?WID=91823') Donate
+      .row: .col-md-12
+        br
+        h3.
+          Lion’s Main Art Collective is a community of queer & trans artists that showcases innovative interdisciplinary art. We foster artistic growth and collaboration in a creative and supportive space.
+        br
+        img.img-responsive(src='/static/people.jpg', vspace='20px')

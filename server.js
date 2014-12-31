@@ -83,6 +83,9 @@ app.get('/', function(req, res) {
       res.render("index", {profiles: profiles});
     });
 });
+app.get('/about', function(req, res) {
+  res.render("about");
+});
 app.get('/image/:uid', function(req, res) {
   LMACProfileImage
     .find({
