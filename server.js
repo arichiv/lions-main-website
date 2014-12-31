@@ -84,10 +84,10 @@ app.get('/', function(req, res) {
     });
 });
 app.get('/about', function(req, res) {
-  res.render("about");
+  res.render("about", {page: 'about'});
 });
 app.get('/shows', function(req, res) {
-  res.render("shows");
+  res.render("shows", {page: 'shows'});
 });
 app.get('/artists', function(req, res) {
   LMACProfile
@@ -96,7 +96,7 @@ app.get('/artists', function(req, res) {
     order: 'name',
   })
   .success(function(profiles) {
-    res.render("artists", {profiles: profiles});
+    res.render("artists", {page: 'artists', profiles: profiles});
   });
 });
 app.get('/image/:uid', function(req, res) {
