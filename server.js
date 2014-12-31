@@ -74,16 +74,6 @@ app.use(expressSession({secret: process.env.EXPRESS_SESSION_SECRET}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.get('/', function(req, res) {
-  LMACProfile
-    .findAll({
-      where: { enabled: true },
-      order: 'name',
-    })
-    .success(function(profiles) {
-      res.render("index", {profiles: profiles});
-    });
-});
-app.get('/about', function(req, res) {
   res.render("about", {page: 'about'});
 });
 app.get('/shows', function(req, res) {
