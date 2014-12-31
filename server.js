@@ -89,6 +89,16 @@ app.get('/about', function(req, res) {
 app.get('/shows', function(req, res) {
   res.render("shows");
 });
+app.get('/artists', function(req, res) {
+  LMACProfile
+  .findAll({
+    where: { enabled: true },
+    order: 'name',
+  })
+  .success(function(profiles) {
+    res.render("artists", {profiles: profiles});
+  });
+});
 app.get('/image/:uid', function(req, res) {
   LMACProfileImage
     .find({

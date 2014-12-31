@@ -1,0 +1,19 @@
+extends ./template.jade
+
+mixin show-profile(profile)
+  br
+  .row
+    .col-md-2
+      .profile-image-circle(style='background-image: url("/image/'+profile.uid+'")')
+    .col-md-10
+      h1: a(href=profile.website, target="__blank")= profile.name
+      h3= profile.biography
+  br
+
+block content
+  .container-fluid(id='Artists', class='show_section')
+    .container
+      br
+      each profile in profiles
+        +show-profile(profile)
+      br
