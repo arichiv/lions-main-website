@@ -1,0 +1,47 @@
+extends ./template.jade
+
+mixin show-section(show_name, show_id, show_date, show_location, show_def, show_def_src, carousel_images)
+  .container-fluid(id=show_id, class='show_section')
+    .container: .row: .col-md-12
+      br
+      br
+      h1(class='text-center')!= show_name
+      h2(class='text-center')!= show_date + ' - ' + show_location
+      br
+      blockquote.blockquote-reverse
+        h3!= show_def
+        footer!= show_def_src
+      if carousel_images.length > 0
+        br
+        .carousel.slide(data-ride='carousel', id='carousel-'+show_id)
+          ol.carousel-indicators
+            each val, index in carousel_images
+              if index == 0
+                li.active(data-target='#carousel-'+show_id data-slide-to=index)
+              else
+                li(data-target='#carousel-'+show_id data-slide-to=index)
+          .carousel-inner
+            each val, index in carousel_images
+              if index == 0
+                .item.active: center
+                  a(href='/static/'+val data-toggle='lightbox')
+                    img.img-responsive(src='/static/'+val)
+              else
+                .item: center
+                  a(href='/static/'+val data-toggle='lightbox')
+                    img.img-responsive(src='/static/'+val)
+          a(class='left carousel-control' href='#carousel-'+show_id data-slide='prev')
+              span(class='glyphicon glyphicon-chevron-left')
+          a(class='right carousel-control' href='#carousel-'+show_id data-slide='next')
+              span(class='glyphicon glyphicon-chevron-right')
+        br
+      br
+      br
+
+block content
+  +show-section('Film Festival', 'Shorts', 'Thursday, January 8, 2015', '<a href="http://central-cinema.com/">Central Cinema</a>', 'The Lion\'s Main Art Collective is partnering with Central Cinema to create a night of Trans and Queer short films from local Washington artists. We\'ll be awarding a $100 prize selected by our curation team and a $50 prize selected by the audience, to help artists create more work in the future. <a href="https://filmfreeway.com/festival/lionsmainart">Submit today!</a>', 'The Lions', [])
+  +show-section('Portals', 'Portals', 'Friday, September 19, 2014', 'SODO Commerce Building', 'A small glimpse into an alternate reality, or a means of traveling between realities. A gateway, a peephole, a liminal threshold, a porous barrier, a hole to transformative spaces.', 'The Lions', ['portals_0.jpg','portals_1.jpg', 'portals_2.jpg', 'portals_3.jpg', 'portals_4.jpg'])
+  +show-section('Fever', 'Fever', 'Tuesday, May 6, 2014', 'Gallery 1412', 'A state of intense nervous excitement, agitation, heat; an instance of this.', 'Oxford English Dictionary', ['fever_0.jpg', 'fever_1.jpg',  'fever_2.jpg', 'fever_3.jpg', 'fever_4.jpg'])
+  +show-section('Gems', 'Gems', 'Tuesday, March 4, 2014', 'Gallery 1412', ' An object of rare beauty or priceless worth; the choicest part of (anything).', 'Oxford English Dictionary', ['gems_0.jpg', 'gems_1.jpg',  'gems_2.jpg', 'gems_3.jpg', 'gems_4.jpg'])
+  +show-section('Collision', 'Collision', 'Tuesday, January 7, 2014', 'Gallery 1412', 'Coming into contact (with no notion of violent opposition or hostility); action of mind upon mind, or the like.', 'Oxford English Dictionary', ['collision_0.jpg', 'collision_1.jpg',  'collision_2.jpg', 'collision_3.jpg', 'collision_4.jpg'])
+  +show-section('Eulogy', 'Eulogy', 'Tuesday, November 5, 2013', 'Gallery 1412', 'A speech or writing in commendation of the character and services of a person, or the qualities of a thing; esp. a set oration in honour of a deceased person.', 'Oxford English Dictionary', ['eulogy_0.jpg', 'eulogy_1.jpg',  'eulogy_2.jpg', 'eulogy_3.jpg', 'eulogy_4.jpg'])
