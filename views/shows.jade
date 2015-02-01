@@ -1,12 +1,13 @@
 extends ./template.jade
 
-mixin show-section(show_name, show_id, show_date, show_location, show_def, show_def_src, carousel_images)
+mixin show-section(show_name, show_id, show_info_a, show_info_b, show_def, show_def_src, carousel_images)
   .container-fluid(id=show_id, class='show_section')
     .container: .row: .col-md-12
       br
       br
       h1(class='text-center')!= show_name
-      h2(class='text-center')!= show_date + ' - ' + show_location
+      h2(class='text-center')!= show_info_a
+      h2(class='text-center')!= show_info_b
       br
       blockquote.blockquote-reverse
         h3!= show_def
