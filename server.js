@@ -36,11 +36,11 @@ var match = process.env.DATABASE_URL.match(
   /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/
 )
 var db = new sequelize(match[5], match[1], match[2], {
-  dialect:  'postgres',
+  dialect: 'postgres',
   protocol: 'postgres',
-  port:     match[4],
-  host:     match[3],
-  logging:  true
+  port: match[4],
+  host: match[3],
+  logging: console.log
 })
 var LMACProfile = db.define(
   'LMACProfile',
@@ -69,8 +69,14 @@ app.set('view engine', 'jade');
 app.use("/static/", express.static(__dirname + '/static/'));
 app.use(robots(__dirname + '/robots.txt'))
 app.use(cookieParser(process.env.EXPRESS_SESSION_SECRET));
-app.use(bodyParser());
-app.use(expressSession({secret: process.env.EXPRESS_SESSION_SECRET}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(expressSession({
+  secret: process.env.EXPRESS_SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.get('/', function(req, res) {
@@ -85,7 +91,7 @@ app.get('/artists', function(req, res) {
     where: { enabled: true },
     order: 'name',
   })
-  .success(function(profiles) {
+  .then(function(profiles) {
     res.render("artists", {page: 'artists', profiles: profiles});
   });
 });
@@ -94,7 +100,7 @@ app.get('/image/:uid', function(req, res) {
     .find({
       where: { uid: req.param("uid") },
     })
-    .complete(function(err, image) {
+    .then(function(image) {;
       if (image) {
         imagemagick.resize({
           srcData: image.data,
@@ -137,7 +143,7 @@ app.get('/edit', function(req, res) {
       where: { uid: req.user.id },
       defaults: { uid: req.user.id }
     })
-    .success(function(profile, created) {
+    .spread(function(profile, created) {
       res.render("edit", {profile: profile});
     })
 });
@@ -152,7 +158,7 @@ app.post('/edit-save', function(req, res) {
       .find({
         where: { uid: req.user.id },
       })
-      .complete(function(err, profile) {
+      .then(function(profile) {
         profile.enabled = Boolean(fields.enabled);
         profile.name = fields.name;
         var website = fields.website;
@@ -161,30 +167,30 @@ app.post('/edit-save', function(req, res) {
         }
         profile.website = website;
         profile.biography = fields.biography;
-        profile.save().success(function() {
-        if (files.image.size) {
-          fs.readFile(files.image.path, 'base64', function (err, data) {
-            var img = new Buffer(data, 'base64');
-            LMACProfileImage
-              .findOrCreate({
-                where: { uid: req.user.id },
-                defaults: { uid: req.user.id }
-              })
-              .success(function(image, created) {
-                image.data = img;
-                image.save().success(function() {
-                  res.redirect('/edit');
+        profile.save().then(function() {
+          if (files.image.size) {
+            fs.readFile(files.image.path, 'base64', function (err, data) {
+              var img = new Buffer(data, 'base64');
+              LMACProfileImage
+                .findOrCreate({
+                  where: { uid: req.user.id },
+                  defaults: { uid: req.user.id }
+                })
+                .spread(function(image, created) {
+                  image.data = img;
+                  image.save().then(function() {
+                    res.redirect('/edit');
+                  });
                 });
-              });
-          });
-        } else {
-          res.redirect('/edit');
-        }
+            });
+          } else {
+            res.redirect('/edit');
+          }
+        });
       });
-    });
   });
 });
 
-db.sync().complete(function() {
+db.sync().then(function() {
   http.createServer(app).listen(app.get('port'));
 });
