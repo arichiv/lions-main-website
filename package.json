@@ -10,19 +10,19 @@
     "body-parser": "1.14.x",
     "cookie-parser": "1.4.x",
     "express": "4.13.x",
-    "express-session": "1.11.x",
+    "express-session": "1.13.x",
     "formidable": "1.0.x",
     "imagemagick": "0.1.x",
     "jade": "1.11.x",
     "passport": "0.3.x",
-    "passport-facebook": "2.0.x",
+    "passport-facebook": "2.1.x",
     "pg": "4.4.x",
     "pg-hstore": "2.3.x",
     "robots.txt": "1.1.x",
-    "sequelize": "3.11.x"
+    "sequelize": "3.19.x"
   },
   "engines": {
-    "node": "4.1.x",
-    "npm": "3.3.x"
+    "node": "5.5.x",
+    "npm": "3.7.x"
   }
 }
