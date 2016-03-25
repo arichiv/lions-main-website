@@ -7,7 +7,7 @@
     "url": "git://github.com/aric/lions-main.git"
   },
   "dependencies": {
-    "body-parser": "1.14.x",
+    "body-parser": "1.15.x",
     "cookie-parser": "1.4.x",
     "express": "4.13.x",
     "express-session": "1.13.x",
@@ -16,13 +16,13 @@
     "jade": "1.11.x",
     "passport": "0.3.x",
     "passport-facebook": "2.1.x",
-    "pg": "4.4.x",
+    "pg": "4.5.x",
     "pg-hstore": "2.3.x",
     "robots.txt": "1.1.x",
-    "sequelize": "3.19.x"
+    "sequelize": "3.20.x"
   },
   "engines": {
-    "node": "5.5.x",
-    "npm": "3.7.x"
+    "node": "5.9.x",
+    "npm": "3.8.x"
   }
 }
